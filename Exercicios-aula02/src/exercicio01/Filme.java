@@ -20,7 +20,6 @@ public class Filme {
         this.nome = nome;
     }
 
-
     public String getNome() {
         return nome;
     }
@@ -61,13 +60,13 @@ public class Filme {
         this.diretor = diretor;
     }
 
-    public String rodarFilme() {
+    public String exibir() {
         return "Filme: "+ nome +
                 "\nDiretor: "+diretor+
                 "\nDescrição: "+descricao+
                 "\nAno: "+ano+
+                "\nDuração: "+duracao+ " minutos"+
                 "\nAvaliação: "+avaliacao;
-
 
     }
 
