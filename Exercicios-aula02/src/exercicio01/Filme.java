@@ -62,7 +62,7 @@ public class Filme {
 
     public String exibir() {
         return "Filme: "+ nome +
-                "\nDiretor: "+diretor+
+                "\nDiretor: "+diretor.getNome()+
                 "\nDescrição: "+descricao+
                 "\nAno: "+ano+
                 "\nDuração: "+duracao+ " minutos"+
