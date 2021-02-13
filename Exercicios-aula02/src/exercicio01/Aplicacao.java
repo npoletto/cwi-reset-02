@@ -24,6 +24,9 @@ public class Aplicacao {
         System.out.println("\n");
         Ator ator = new Ator("Keanu Reeves",56,0,Genero.MASCULINO);
         ator.imprime();
+        Diretor david = new Diretor("David Fincher", 58, 10, Genero.MASCULINO);
+        Filme oClubedaLuta = new Filme("O Clube da Luta",david, "Filme de um maluco lutando sozinho", 1999, 180, 3);
+        System.out.println(oClubedaLuta.getAvaliacao());
 
     }
 
