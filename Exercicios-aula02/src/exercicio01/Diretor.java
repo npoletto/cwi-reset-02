@@ -4,11 +4,13 @@ public class Diretor {
     private String nome;
     private int idade;
     private int qtdFilmesProduzidos;
+    private Genero genero;
 
-    public Diretor(String nome, int idade, int qtdFilmesProduzidos) {
+    public Diretor(String nome, int idade, int qtdFilmesProduzidos, Genero genero) {
         this.nome = nome;
         this.idade = idade;
         this.qtdFilmesProduzidos = qtdFilmesProduzidos;
+        this.genero = genero;
     }
 
 
@@ -33,6 +35,6 @@ public class Diretor {
     }
 
     public String toString() {
-        return nome + " - idade: " + idade + " - Qtd filmes produzidos: "+ qtdFilmesProduzidos;
+        return nome + " - idade: " + idade + " - Gênero: "+ genero.getDescricao();
     }
 }

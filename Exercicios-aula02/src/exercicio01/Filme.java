@@ -14,7 +14,11 @@ public class Filme {
         this.descricao = descricao;
         this.ano = ano;
         this.duracao = duracao;
+        if(avaliacao<0 || avaliacao>5) {
+            throw new IllegalArgumentException("A avaliação precisa ser entre 0 e 5.");
+        }
         this.avaliacao = avaliacao;
+
     }
 
     public void exibir() {
