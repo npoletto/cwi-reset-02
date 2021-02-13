@@ -16,4 +16,8 @@ public class Ator {
     public String toString() {
         return nome + " - idade: " + idade + " - Gênero: "+ genero.getDescricao();
     }
+
+    public void imprime() {
+        System.out.println(toString());
+    }
 }

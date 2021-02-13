@@ -23,7 +23,7 @@ public class Aplicacao {
 
         System.out.println("\n");
         Ator ator = new Ator("Keanu Reeves",56,0,Genero.MASCULINO);
-        System.out.println(ator);
+        ator.imprime();
 
     }
 
