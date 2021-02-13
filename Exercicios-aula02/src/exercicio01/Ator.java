@@ -12,7 +12,7 @@ public class Ator {
         this.nroOscarsVencidos = nroOscarsVencidos;
         this.genero = genero;
     }
-    
+
     public String toString() {
         return nome + " - idade: " + idade + " - Gênero: "+ genero.getDescricao();
     }
