@@ -11,7 +11,7 @@ public class AplicacaoCalculadoraEComparador {
          */
 
         Calculadora calculadora = new Calculadora();
-        double doubleA = 1.1, doubleB = 2.3;
+        double doubleA = 200, doubleB = 333.33;
         int intA = 1 , intB = 2;
         System.out.println("Soma: " + calculadora.soma(doubleA,doubleB));
         System.out.println("Soma: " + calculadora.soma(intA,intB));
