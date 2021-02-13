@@ -10,11 +10,14 @@ public class Filme {
 
     public Filme(String nome, Diretor diretor, String descricao, int ano, int duracao, int avaliacao) {
         this.nome = nome;
-
         this.diretor = diretor;
         this.descricao = descricao;
         this.ano = ano;
         this.duracao = duracao;
+        defineAvaliacao(avaliacao);
+    }
+
+    public void defineAvaliacao(int avaliacao) {
         if(nome.equalsIgnoreCase("o clube da luta")) {
             this.avaliacao = 5;
         } else if(nome.equalsIgnoreCase("batman vs superman")) {
@@ -26,7 +29,6 @@ public class Filme {
         } else {
             this.avaliacao = avaliacao;
         }
-
     }
 
     public void exibir() {
