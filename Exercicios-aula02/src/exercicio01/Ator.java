@@ -1,23 +1,18 @@
 package exercicio01;
 
-public class Ator {
-    private String nome;
-    private int idade;
+public class Ator extends Pessoa {
     private int nroOscarsVencidos;
-    private Genero genero;
 
     public Ator(String nome, int idade, int nroOscarsVencidos, Genero genero) {
-        this.nome = nome;
-        this.idade = idade;
+        super(nome, idade, genero);
         this.nroOscarsVencidos = nroOscarsVencidos;
-        this.genero = genero;
     }
 
-    public String toString() {
-        return nome + " - idade: " + idade + " - Gênero: "+ genero.getDescricao();
+    public int getNroOscarsVencidos() {
+        return nroOscarsVencidos;
     }
 
-    public void imprime() {
-        System.out.println(toString());
+    public void setNroOscarsVencidos(int nroOscarsVencidos) {
+        this.nroOscarsVencidos = nroOscarsVencidos;
     }
 }
