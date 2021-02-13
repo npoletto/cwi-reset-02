@@ -17,9 +17,9 @@ public class Aplicacao {
                 180,
                 4);
 
-        System.out.println(godfather.exibir());
+        godfather.exibir();
         System.out.println("\n");
-        System.out.println(blueVelvet.exibir());
+        blueVelvet.exibir();
 
     }
 

@@ -13,60 +13,17 @@ public class Filme {
         this.diretor = diretor;
         this.descricao = descricao;
         this.ano = ano;
+        this.duracao = duracao;
         this.avaliacao = avaliacao;
     }
 
-    public Filme(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public int getAno() {
-        return ano;
-    }
-
-    public void setAno(int ano) {
-        this.ano = ano;
-    }
-
-    public int getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(int avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
-    public Diretor getDiretor() {
-        return diretor;
-    }
-
-    public void setDiretor(Diretor diretor) {
-        this.diretor = diretor;
-    }
-
-    public String exibir() {
-        return "Filme: "+ nome +
+    public void exibir() {
+        System.out.println( "Filme: "+ nome +
                 "\nDiretor: "+diretor.getNome()+
                 "\nDescrição: "+descricao+
                 "\nAno: "+ano+
                 "\nDuração: "+duracao+ " minutos"+
-                "\nAvaliação: "+avaliacao;
+                "\nAvaliação: "+avaliacao);
 
     }
 
