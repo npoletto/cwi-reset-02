@@ -5,9 +5,10 @@ public class Filme {
     private String descricao;
     private Diretor diretor;
     private int ano;
+    private int duracao;
     private int avaliacao;
 
-    public Filme(String nome, Diretor diretor, String descricao, int ano, int avaliacao) {
+    public Filme(String nome, Diretor diretor, String descricao, int ano, int duracao, int avaliacao) {
         this.nome = nome;
         this.diretor = diretor;
         this.descricao = descricao;
@@ -60,7 +61,7 @@ public class Filme {
         this.diretor = diretor;
     }
 
-    public String toString() {
+    public String rodarFilme() {
         return "Filme: "+ nome +
                 "\nDiretor: "+diretor+
                 "\nDescrição: "+descricao+
@@ -68,5 +69,13 @@ public class Filme {
                 "\nAvaliação: "+avaliacao;
 
 
+    }
+
+    public int getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(int duracao) {
+        this.duracao = duracao;
     }
 }
