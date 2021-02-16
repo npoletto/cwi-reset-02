@@ -12,8 +12,8 @@ public class Casa extends Imovel {
     }
 
     public String apresentacao() {
-        return  super.getEndereco() + " - " +
+        return  getEndereco() + " - " +
                 (possuiPatio ? "Com pátio" : "Sem pátio") +
-                " - " + " Valor: R$" + DecimalFormat.getCurrencyInstance().format(super.getValor());
+                " - " + " Valor: R$" + DecimalFormat.getCurrencyInstance().format(getValor());
     }
 }

@@ -12,8 +12,8 @@ public class Apartamento extends Imovel {
     }
 
     public String apresentacao() {
-        return  super.getEndereco() + " - " +
+        return  getEndereco() + " - " +
                 andar + "º andar" +
-                " - " + " Valor: R$" + DecimalFormat.getCurrencyInstance().format(super.getValor());
+                " - " + " Valor: R$" + DecimalFormat.getCurrencyInstance().format(getValor());
     }
 }
