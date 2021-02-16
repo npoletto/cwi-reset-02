@@ -2,7 +2,7 @@ package entidades;
 
 import java.text.DecimalFormat;
 
-public class Imovel {
+public abstract class Imovel {
     private Endereco endereco;
     private double valor;
 
@@ -11,11 +11,7 @@ public class Imovel {
         this.valor = valor;
     }
 
-
-
-    public String apresentacao() {
-        return (endereco + " Valor: R$" + DecimalFormat.getCurrencyInstance().format(valor) + "\n" );
-    }
+    public abstract String apresentacao();
 
     public Endereco getEndereco() {
         return endereco;

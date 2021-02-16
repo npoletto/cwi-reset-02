@@ -29,7 +29,7 @@ public class Endereco {
     public String toString() {
         return  logradouro + ", " + numero +
                 (complemento.isEmpty() ? "" : " Complemento: " + complemento) +
-                " Bairro: " + bairro +
+                " Bairro: " + bairro + " - " +
                 " Cidade: " + cidade + "-" + unidadeFederativa.getSigla();
     }
 }

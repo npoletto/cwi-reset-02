@@ -38,17 +38,19 @@ public class PropostaFinanciamento {
 
     public void validarProposta() {
         double multiplicadorValor;
-        UnidadeFederativa unidadeFederativa = imovel.getEndereco().getUnidadeFederativa();
-        multiplicadorValor = excecoes.getOrDefault(unidadeFederativa, 0.5);
+        multiplicadorValor = excecoes.getOrDefault(imovel.getEndereco().getUnidadeFederativa(), 0.5); //Procura por exceções no HashMap, senão usa default de 0.5
         isPropostaAprovada = beneficiario.getSalario() * prazoPagamento  >= imovel.getValor() * multiplicadorValor;
         imprimirCabecalho();
-        if(isPropostaAprovada) imprimirPropostaAprovada();
-        else imprimirPropostaReprovada();
+        if (isPropostaAprovada) {
+            imprimirPropostaAprovada();
+        } else {
+            imprimirPropostaReprovada();
+        }
     }
 
     private void imprimirCabecalho() {
         System.out.println( "Caro " + beneficiario.getNome() + ", " +
-                            "\nsua proposta em " + prazoPagamento + " vezes, "+
+                            "\nsua proposta em " + prazoPagamento + "X, "+
                             "\npara o endereço: " + imovel.getEndereco());
     }
 
