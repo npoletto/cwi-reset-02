@@ -29,7 +29,7 @@ public class MinhaCasaMinhaDesgraca {
         opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Vicente da Fontoura", 2747, "AP300", "Rio Branco", "Porto Alegre", UnidadeFederativa.RIO_GRANDE_DO_SUL),200000));
         opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Eng. Adolfo Stern", 55, "casa", "Bela Vista", "Porto Alegre", UnidadeFederativa.RIO_GRANDE_DO_SUL),800000));
         opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Av. Ipanema", 10, "", "Lagoa", "Rio de Janeiro", UnidadeFederativa.RIO_DE_JANEIRO),1000000));
-        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Av. Paulista", 1000, "AP202", "Higienópolis", "São Paulo", UnidadeFederativa.RIO_GRANDE_DO_SUL),100000));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Av. Paulista", 1000, "AP202", "Higienópolis", "São Paulo", UnidadeFederativa.SAO_PAULO),100000));
 
         /**
          * FIM

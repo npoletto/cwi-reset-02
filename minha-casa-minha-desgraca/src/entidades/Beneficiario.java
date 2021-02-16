@@ -15,10 +15,6 @@ public class Beneficiario {
         return salario;
     }
 
-    public void setSalario(Double salario) {
-        this.salario = salario;
-    }
-
     public String getNome() {
         return nome;
     }

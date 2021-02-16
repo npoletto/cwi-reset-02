@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PropostaFinanciamento {
+
+    //Optei por usar Hashmap com a UnidadeFederativa como chave, facilitando para inclusão de novas exceções:
     private Map<UnidadeFederativa, Double> excecoes = new HashMap<>();
 
     /**
@@ -37,11 +39,7 @@ public class PropostaFinanciamento {
     public void validarProposta() {
         double multiplicadorValor;
         UnidadeFederativa unidadeFederativa = imovel.getEndereco().getUnidadeFederativa();
-        if(excecoes.containsKey(unidadeFederativa)) {
-            multiplicadorValor = excecoes.get(unidadeFederativa);
-        } else {
-            multiplicadorValor = 0.5;
-        }
+        multiplicadorValor = excecoes.getOrDefault(unidadeFederativa, 0.5);
         isPropostaAprovada = beneficiario.getSalario() * prazoPagamento  >= imovel.getValor() * multiplicadorValor;
         imprimirCabecalho();
         if(isPropostaAprovada) imprimirPropostaAprovada();
