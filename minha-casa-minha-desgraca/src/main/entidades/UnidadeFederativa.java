@@ -1,4 +1,4 @@
-package entidades;
+package main.entidades;
 
 public enum UnidadeFederativa {
     AMAZONAS("Amazonas", "AM"),

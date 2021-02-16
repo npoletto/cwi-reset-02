@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import entidades.*;
+import main.entidades.*;
 
 
 public class MinhaCasaMinhaDesgraca {

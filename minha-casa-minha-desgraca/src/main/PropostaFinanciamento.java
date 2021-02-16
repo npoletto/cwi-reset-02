@@ -1,8 +1,8 @@
 package main;
 
-import entidades.Beneficiario;
-import entidades.Imovel;
-import entidades.UnidadeFederativa;
+import main.entidades.Beneficiario;
+import main.entidades.Imovel;
+import main.entidades.UnidadeFederativa;
 
 
 import java.util.HashMap;

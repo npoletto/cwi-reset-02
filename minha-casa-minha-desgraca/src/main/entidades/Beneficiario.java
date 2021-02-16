@@ -1,4 +1,4 @@
-package entidades;
+package main.entidades;
 
 public class Beneficiario {
     private String nome;

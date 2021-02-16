@@ -1,6 +1,4 @@
-package entidades;
-
-import java.text.DecimalFormat;
+package main.entidades;
 
 public abstract class Imovel {
     private Endereco endereco;

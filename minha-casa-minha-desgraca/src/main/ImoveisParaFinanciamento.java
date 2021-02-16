@@ -1,6 +1,6 @@
 package main;
 
-import entidades.Imovel;
+import main.entidades.Imovel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

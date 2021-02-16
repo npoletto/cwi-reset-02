@@ -1,4 +1,4 @@
-package entidades;
+package main.entidades;
 
 import java.text.DecimalFormat;
 
