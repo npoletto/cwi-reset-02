@@ -1,3 +1,8 @@
+# Enunciado da tarefa, copiado do original
+
+https://github.com/brunozambiazi/cwi-reset-02/tree/main/minha-casa-minha-desgraca
+
+
 # Projeto MINHA CASA - MINHA DESGRAÇA
 
 Você deve criar o projeto `minha-casa-minha-desgraca`. O projeto terá opções de imóveis para financiamento e avaliará propostas de possíveis beneficiários do programa.
