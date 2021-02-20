@@ -15,9 +15,8 @@ public class Main {
         elenco.add(ator1);
         elenco.add(ator2);
         elenco.add(ator3);
-        elenco.add(diretor);
 
-        Filme filme = new Filme(elenco);
+        Filme filme = new Filme("Filme fictício", diretor, "Nunca existiu", 2020, 60, 5, elenco);
 
         System.out.println(filme.creditos());
     }

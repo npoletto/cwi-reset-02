@@ -15,4 +15,9 @@ public class Ator extends Pessoa {
     public void setNroOscarsVencidos(int nroOscarsVencidos) {
         this.nroOscarsVencidos = nroOscarsVencidos;
     }
+
+    @Override
+    public String toString() {
+        return getNome() + " - Idade: "+ getIdade() + " - Gênero: " + getGenero().getDescricao() + " - Oscars: " + nroOscarsVencidos;
+    }
 }

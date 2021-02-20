@@ -17,4 +17,9 @@ public class Diretor extends Pessoa {
         this.qtdFilmesProduzidos = qtdFilmesProduzidos;
     }
 
+    @Override
+    public String toString() {
+        return getNome() + " - Idade: "+ getIdade() + " - Gênero: " + getGenero().getDescricao() + " - Filmes dirigidos: " + qtdFilmesProduzidos;
+    }
+
 }
