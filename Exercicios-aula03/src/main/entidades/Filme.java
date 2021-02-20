@@ -18,7 +18,7 @@ public class Filme {
     public String creditos() {
         StringBuffer creditos = new StringBuffer();
         for(Pessoa pessoa : elenco) {
-            creditos.append(pessoa.getNome());
+            creditos.append(pessoa.getNome() + " - Idade: "+ pessoa.getIdade() + " - Gênero: " + pessoa.getGenero().getDescricao());
             if(pessoa instanceof Diretor) {
                 creditos.append(" - Filmes dirigidos: " + ((Diretor) pessoa).getQtdFilmesProduzidos() );
             } else if (pessoa instanceof Ator) {
