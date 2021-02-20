@@ -9,7 +9,5 @@ public class AplicacaoTeste {
         } catch(Exception ex) {
             System.out.println("Opa, tivemos um problema:\n"+ex.toString());
         }
-
-
     }
 }

@@ -21,14 +21,14 @@ public class Filme {
 
     public void reproduzir() {
         System.out.println("Nome Filme: " + this.nome);
-        System.out.println("Descrção: " + this.descricao);
+        System.out.println("Descrição: " + this.descricao);
         System.out.println("Duração: " + this.duracao);
         System.out.println("Nome do Diretor: " + this.diretor.getNome());
     }
 
     private void defineAvaliacao(Integer avaliacao) {
         if (avaliacao < 1 || avaliacao > 5) {
-            throw new IllegalArgumentException("A avaliação precisa ser entre 0 e 5.");
+            throw new IllegalArgumentException("A avaliação precisa ser entre 1 e 5.");
         } else {
             this.avaliacao = avaliacao;
         }

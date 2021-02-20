@@ -18,4 +18,11 @@ public class Editora {
     }
 
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
 }
