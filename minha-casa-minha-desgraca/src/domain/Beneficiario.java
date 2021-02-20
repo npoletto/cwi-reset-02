@@ -1,4 +1,4 @@
-package main.entidades;
+package domain;
 
 public class Beneficiario {
     private String nome;
@@ -9,7 +9,6 @@ public class Beneficiario {
         this.nome = nome;
         this.salario = salario;
     }
-
 
     public Double getSalario() {
         return salario;

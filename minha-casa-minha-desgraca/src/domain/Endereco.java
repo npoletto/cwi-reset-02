@@ -1,4 +1,6 @@
-package main.entidades;
+package domain;
+
+import enumerador.UnidadeFederativa;
 
 public class Endereco {
     private String logradouro;
@@ -26,6 +28,7 @@ public class Endereco {
         return unidadeFederativa.getNome();
     }
 
+    @Override
     public String toString() {
         return  logradouro + ", " + numero +
                 (complemento.isEmpty() ? "" : " Complemento: " + complemento) +

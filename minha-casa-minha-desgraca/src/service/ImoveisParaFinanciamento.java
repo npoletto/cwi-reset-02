@@ -1,6 +1,6 @@
-package main;
+package service;
 
-import main.entidades.Imovel;
+import domain.Imovel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

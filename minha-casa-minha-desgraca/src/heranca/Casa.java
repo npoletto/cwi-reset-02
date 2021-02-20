@@ -1,4 +1,7 @@
-package main.entidades;
+package heranca;
+
+import domain.Endereco;
+import domain.Imovel;
 
 import java.text.DecimalFormat;
 

@@ -1,8 +1,8 @@
-package main;
+package service;
 
-import main.entidades.Beneficiario;
-import main.entidades.Imovel;
-import main.entidades.UnidadeFederativa;
+import domain.Beneficiario;
+import domain.Imovel;
+import enumerador.UnidadeFederativa;
 
 
 import java.util.HashMap;

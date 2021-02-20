@@ -1,4 +1,6 @@
-package main.entidades;
+package domain;
+
+import domain.Endereco;
 
 public abstract class Imovel {
     private Endereco endereco;
