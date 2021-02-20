@@ -1,10 +1,12 @@
 package main.entidades;
 
+import java.time.LocalDate;
+
 public class Diretor extends Pessoa {
     private int qtdFilmesProduzidos;
 
 
-    public Diretor(String nome, int idade, int qtdFilmesProduzidos, Genero genero) {
+    public Diretor(String nome, LocalDate idade, int qtdFilmesProduzidos, Genero genero) {
         super(nome,idade, genero);
         this.qtdFilmesProduzidos = qtdFilmesProduzidos;
     }
@@ -19,7 +21,7 @@ public class Diretor extends Pessoa {
 
     @Override
     public String toString() {
-        return getNome() + " - Idade: "+ getIdade() + " - Gênero: " + getGenero().getDescricao() + " - Filmes dirigidos: " + qtdFilmesProduzidos;
+        return super.toString() + " - Filmes dirigidos: " + qtdFilmesProduzidos;
     }
 
 }

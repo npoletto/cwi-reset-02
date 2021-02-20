@@ -1,9 +1,11 @@
 package main.entidades;
 
+import java.time.LocalDate;
+
 public class Ator extends Pessoa {
     private int nroOscarsVencidos;
 
-    public Ator(String nome, int idade, int nroOscarsVencidos, Genero genero) {
+    public Ator(String nome, LocalDate idade, int nroOscarsVencidos, Genero genero) {
         super(nome, idade, genero);
         this.nroOscarsVencidos = nroOscarsVencidos;
     }
@@ -18,6 +20,6 @@ public class Ator extends Pessoa {
 
     @Override
     public String toString() {
-        return getNome() + " - Idade: "+ getIdade() + " - Gênero: " + getGenero().getDescricao() + " - Oscars: " + nroOscarsVencidos;
+        return super.toString() + " - Oscars: " + nroOscarsVencidos;
     }
 }

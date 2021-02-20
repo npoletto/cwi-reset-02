@@ -1,31 +1,41 @@
 package main.entidades;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 public class Pessoa {
 
         private String nome;
-        private int idade;
+        private LocalDate dataNascimento;
         private Genero genero;
+        private int idade;
 
     public String getNome() {
         return nome;
     }
 
-    public int getIdade() {
-        return idade;
+    public LocalDate getdataNascimento() {
+        return dataNascimento;
     }
 
     public Genero getGenero() {
         return genero;
     }
 
-    public Pessoa(String nome, int idade, Genero genero) {
+    public Pessoa(String nome, LocalDate dataNascimento, Genero genero) {
             this.nome = nome;
-            this.idade = idade;
+            this.dataNascimento = dataNascimento;
             this.genero = genero;
+            this.idade = (int) dataNascimento.until(LocalDate.now(),ChronoUnit.YEARS);
         }
 
         public String toString() {
             return nome + " - idade: " + idade + " - Gênero: "+ genero.getDescricao();
+        }
+
+        public int getIdade() {
+            return idade;
         }
 
         public void imprime() {

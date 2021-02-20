@@ -1,6 +1,7 @@
 package main.entidades;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Filme {
 
@@ -21,11 +22,25 @@ public class Filme {
         defineAvaliacao(avaliacao);
     }
 
+    public HashMap<Integer,ArrayList<Pessoa>> getElencoPorIdade (){
+        HashMap<Integer,ArrayList<Pessoa>> map = new HashMap<>();
+
+        for(Pessoa pessoa : pessoas) {
+            if(map.containsKey(pessoa.getIdade())) {
+                map.get(pessoa.getIdade()).add(pessoa);
+            } else {
+                ArrayList<Pessoa> pessoas = new ArrayList<>();
+                pessoas.add(pessoa);
+                map.put(pessoa.getIdade(),pessoas);
+            }
+        }
+        return map;
+    }
+
 
     public String creditos() {
-        StringBuffer creditos = new StringBuffer();
+        StringBuffer creditos = new StringBuffer("\n------------ "+nome+" ------------\n");
         Diretor diretor = null;
-
         for(Pessoa pessoa : pessoas) {
            creditos.append(pessoa + "\n");
         }
