@@ -1,14 +1,10 @@
 package main.entidades;
 
-import main.entidades.Diretor;
-import main.entidades.Pessoa;
-import main.entidades.Ator;
-
 import java.util.ArrayList;
 
 public class Filme {
 
-    ArrayList<Pessoa> elenco;
+    ArrayList<Pessoa> pessoas;
     private String nome;
     private String descricao;
     private Diretor diretor;
@@ -16,24 +12,23 @@ public class Filme {
     private int duracao;
     private int avaliacao;
 
-    public Filme(String nome, Diretor diretor, String descricao, int ano, int duracao, int avaliacao, ArrayList<Pessoa> elenco) {
+    public Filme(String nome, String descricao, int ano, int duracao, int avaliacao, ArrayList<Pessoa> pessoas) {
         this.nome = nome;
-        this.diretor = diretor;
         this.descricao = descricao;
         this.ano = ano;
         this.duracao = duracao;
-        this.elenco = elenco;
+        this.pessoas = pessoas;
         defineAvaliacao(avaliacao);
     }
 
 
     public String creditos() {
         StringBuffer creditos = new StringBuffer();
-        creditos.append("Elenco:\n");
-        for(Pessoa pessoa : elenco) {
-            creditos.append(pessoa + "\n");
+        Diretor diretor = null;
+
+        for(Pessoa pessoa : pessoas) {
+           creditos.append(pessoa + "\n");
         }
-        creditos.append( "\nDiretor: " + diretor );
         return creditos.toString();
     }
 
