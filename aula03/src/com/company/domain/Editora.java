@@ -1,5 +1,7 @@
 package com.company.domain;
 
+import com.company.exceptions.EditoraException;
+
 public class Editora {
     private String nome;
     private String localizacao;
@@ -13,7 +15,7 @@ public class Editora {
 
     public void validaNome(String nome) {
         if(nome.equalsIgnoreCase("DC Comics")) {
-            throw new RuntimeException("Acho que temos um instrutor fã da Marvel.");
+            throw new EditoraException("Acho que temos um instrutor fã da Marvel.");
         }
     }
 

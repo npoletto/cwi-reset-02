@@ -4,6 +4,8 @@ import com.company.domain.Diretor;
 import com.company.domain.Editora;
 import com.company.domain.Filme;
 import com.company.enums.Genero;
+import com.company.exceptions.EditoraException;
+import com.company.exceptions.FilmeException;
 
 public class AplicacaoTeste {
     public static void main(String[] args) {
@@ -13,9 +15,11 @@ public class AplicacaoTeste {
                                     "Melhor filme nacional",
                                     180,
                                     2010,
-                                    5,
+                                    1000,
                                     new Diretor("padilha", 56, 23, Genero.MASCULINO));
-        } catch(Exception ex) {
+        } catch(EditoraException ex) {
+            System.out.println("Opa, tivemos um problema:\n"+ex.toString());
+        } catch(FilmeException ex) {
             System.out.println("Opa, tivemos um problema:\n"+ex.toString());
         }
     }

@@ -1,5 +1,7 @@
 package com.company.domain;
 
+import com.company.exceptions.FilmeException;
+
 public class Filme {
 
     private String nome;
@@ -28,7 +30,7 @@ public class Filme {
 
     private void defineAvaliacao(Integer avaliacao) {
         if (avaliacao < 1 || avaliacao > 5) {
-            throw new IllegalArgumentException("A avaliação precisa ser entre 1 e 5.");
+            throw new FilmeException("A avaliação precisa ser entre 1 e 5.");
         } else {
             this.avaliacao = avaliacao;
         }
