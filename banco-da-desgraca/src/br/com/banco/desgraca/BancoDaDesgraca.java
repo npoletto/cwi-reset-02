@@ -13,8 +13,6 @@ public class BancoDaDesgraca {
 
          */
 
-        HashMap<TipoContaBancaria, RegrasContas> regras = new HashMap<>();
-        regras.put(TipoContaBancaria.CONTA_CORRENTE, new RegrasContas(0,0, 0.01,0, 5));
 
 
     }
