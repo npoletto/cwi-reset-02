@@ -62,7 +62,8 @@ public abstract class ContaGenerica implements ContaBancaria {
         for (Transacao transacao : transacoes) {
             saldo+=transacao.getValor();
         }
-        return saldo;
+        //Forçar o arredondamento para 2 casas decimais para evitar problemas com o uso de Double.
+        return new BigDecimal(saldo).setScale(2,RoundingMode.HALF_DOWN).doubleValue();
     }
 
     @Override
@@ -71,7 +72,7 @@ public abstract class ContaGenerica implements ContaBancaria {
         LocalDate data = Data.getDataTransacao();
         Transacao transacao = new Transacao(data, TipoTransacao.DEPOSITO, valor);
         transacoes.add(transacao);
-        System.out.println(data + " - Depositando R$"+ DecimalFormat.getCurrencyInstance().format(valor) + " na " + toString() + ".");
+        System.out.println(data + " - Depositando "+ DecimalFormat.getCurrencyInstance().format(valor) + " na " + toString() + ".");
     }
 
     @Override
@@ -109,7 +110,6 @@ public abstract class ContaGenerica implements ContaBancaria {
 
         boolean mesmaInstituicaoBancaria = (instituicaoBancaria == contaDestino.getInstituicaoBancaria());
         double taxaTransferencia = mesmaInstituicaoBancaria ? regrasContas.getTaxaTransferenciaMesmaInstituicao() : regrasContas.getTaxaTransferenciaOutraInstituicao();
-
         if( saldo - ( valor * ( 1 + taxaTransferencia) ) < 0) {
             throw new SaldoInsuficienteException("Não há saldo suficiente na conta.");
         }
@@ -141,15 +141,21 @@ public abstract class ContaGenerica implements ContaBancaria {
     }
 
     private void validaValorRecebido(Double valor) {
+        if( valor == null) {
+            throw new ValorInvalidoException("Valor não pode ser nulo." );
+        }
         if( valor < 0 || valor.isNaN()) {
             throw new ValorInvalidoException("Valor inválido. (" + valor +")" );
         }
     }
 
     private void cobraTaxa(Double taxa, Double valor, LocalDate data) {
-        BigDecimal bd = new BigDecimal(valor * taxa).setScale(2, RoundingMode.DOWN);
-        Transacao transacaoTaxa = new Transacao(data, TipoTransacao.TAXA, -bd.doubleValue());
+        BigDecimal bdTaxa = new BigDecimal(taxa).setScale(4, RoundingMode.DOWN);
+        BigDecimal bdvalor = new BigDecimal(valor).setScale(2, RoundingMode.DOWN);
+        BigDecimal bdDesconto = bdTaxa.multiply(bdvalor).setScale(2, RoundingMode.DOWN);
+
+        Transacao transacaoTaxa = new Transacao(data, TipoTransacao.TAXA, -bdDesconto.doubleValue());
         transacoes.add(transacaoTaxa);
-        System.out.println(data + " - Taxa bancária: "+ DecimalFormat.getCurrencyInstance().format(bd.doubleValue()) + " na " + toString() + ".");
+        System.out.println(data + " - Taxa bancária: "+ DecimalFormat.getCurrencyInstance().format(bdDesconto.doubleValue()) + " na " + toString() + ".");
     }
 }

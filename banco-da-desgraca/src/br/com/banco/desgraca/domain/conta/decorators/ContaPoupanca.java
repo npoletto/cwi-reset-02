@@ -9,8 +9,8 @@ import br.com.banco.desgraca.domain.conta.enums.TipoContaBancaria;
 
 public class ContaPoupanca extends ContaGenerica implements ContaBancaria {
 
-    public ContaPoupanca(int numeroConta, InstituicaoBancaria instituicaoBancaria, TipoContaBancaria tipoContaBancaria) {
-        super(numeroConta, instituicaoBancaria, tipoContaBancaria);
+    public ContaPoupanca(int numeroConta, InstituicaoBancaria instituicaoBancaria) {
+        super(numeroConta, instituicaoBancaria, TipoContaBancaria.CONTA_POUPANCA);
         RegrasContas regraContas = new RegrasContas(0.02,0.005,0.01,50,0);
         setRegrasContas(regraContas);
     }

@@ -8,8 +8,8 @@ import br.com.banco.desgraca.domain.conta.enums.TipoContaBancaria;
 
 public class ContaDigital extends ContaGenerica implements ContaBancaria {
 
-    public ContaDigital(int numeroConta, InstituicaoBancaria instituicaoBancaria, TipoContaBancaria tipoContaBancaria) {
-        super(numeroConta, instituicaoBancaria, tipoContaBancaria);
+    public ContaDigital(int numeroConta, InstituicaoBancaria instituicaoBancaria) {
+        super(numeroConta, instituicaoBancaria, TipoContaBancaria.CONTA_DIGITAL);
         RegrasContas regraContas = new RegrasContas(0,0,0,10,0);
         setRegrasContas(regraContas);
     }
