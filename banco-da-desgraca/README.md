@@ -1,5 +1,31 @@
 # Banco da Desgraça
 
+## Mensagem aos avaliadores:
+
+            Caros, algumas observações:
+
+            OBS 1: Decidi criar uma classe Banco responsável por criar contas bancárias (como se fosse uma Factory).
+            Sei que o enunciado não exigia esta funcionalidade, por isso neste sistema seu uso é opcional.
+            Caso seja usada, ela verifica o número de conta e impede a abertura de contas com o mesmo número.
+            Como sei que irão rodas linhas de teste que já foram desenvolvidas, deixei as classes ContaCorrente,
+            ContaDigital e ContaPoupanca com seus construtores públicos. Porém na minha proposta o ideal seria
+            que fossem protegidas, e apenas a classe Banco poderia instanciá-las, conforme ocorre no mundo real: bancos
+            abrem contas solicitadas por clientes.
+            Mas é apenas uma proposta, o código deverá rodar sem a utilização da classe Banco, da mesma forma.
+
+            OBS 2: Optei pelo uso de Decorators para diferenciar os tipos de conta. Cada um implementa ContaBancaria e
+            estende ContaGenerica, adicionando apenas as regras do enunciado (taxas, valor mín para saque, e etc).
+            Desta forma evito ter que colocar as regras em cada classe de tipo de conta.
+
+            OBS 3: Criei testes unitários, algo novo para mim, que tentei usar neste projeto. Para isso utilizei:
+            o JUnit ("org.junit.jupiter:junit-jupiter:5.6.2), tais testes se encontram no diretório "test". Ao rodar
+            os testes descobri vários erros (maioria por arredondamento), já corrigidos.
+
+            OBS 4: Utilizei BigDecimal para corrigir problemas de arrendondamento com Double, principalmente na parte de
+            cobrar as taxas pelas transações. 
+
+### Enunciado:
+
 Criar um sistema para gestão de contas bancárias, possibilitando funções de entrada, saída, transferência e extrato.
 
 _Obs.: você deve criar um projeto novo chamado `banco-da-desgraca` e copiar a mesma estrutura de classes e packages fornecida neste projeto de exemplo._
