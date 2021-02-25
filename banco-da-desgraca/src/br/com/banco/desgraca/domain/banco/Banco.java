@@ -20,21 +20,21 @@ public class Banco {
 
     public ContaPoupanca abreContaPoupanca(int numeroConta) {
         validaNumeroConta(numeroConta);
-        ContaPoupanca conta = new ContaPoupanca( numeroConta, instituicaoBancaria, TipoContaBancaria.CONTA_POUPANCA);
+        ContaPoupanca conta = new ContaPoupanca( numeroConta, instituicaoBancaria);
         contas.put(numeroConta, conta);
         return conta;
     }
 
     public ContaDigital abreContaDigital(int numeroConta) {
         validaNumeroConta(numeroConta);
-        ContaDigital conta = new ContaDigital( numeroConta, instituicaoBancaria, TipoContaBancaria.CONTA_DIGITAL);
+        ContaDigital conta = new ContaDigital( numeroConta, instituicaoBancaria);
         contas.put(numeroConta, conta);
         return conta;
     }
 
     public ContaCorrente abreContaCorrente(int numeroConta) {
         validaNumeroConta(numeroConta);
-        ContaCorrente conta = new ContaCorrente( numeroConta, instituicaoBancaria, TipoContaBancaria.CONTA_CORRENTE);
+        ContaCorrente conta = new ContaCorrente( numeroConta, instituicaoBancaria);
         contas.put(numeroConta, conta);
         return conta;
     }
