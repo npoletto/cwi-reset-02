@@ -1,4 +1,4 @@
-package br.com.banco.desgraca.domain.conta;
+package br.com.banco.desgraca.domain.conta.enums;
 
 public enum TipoContaBancaria {
     CONTA_CORRENTE("Conta Corrente"),

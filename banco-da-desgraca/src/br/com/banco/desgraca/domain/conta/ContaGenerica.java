@@ -1,23 +1,34 @@
 package br.com.banco.desgraca.domain.conta;
 
-import br.com.banco.desgraca.domain.InstituicaoBancaria;
+import br.com.banco.desgraca.Data;
+import br.com.banco.desgraca.domain.banco.enums.InstituicaoBancaria;
+import br.com.banco.desgraca.domain.transacao.enums.TipoTransacao;
+import br.com.banco.desgraca.domain.transacao.Transacao;
+import br.com.banco.desgraca.domain.conta.enums.TipoContaBancaria;
+import br.com.banco.desgraca.exception.CriacaoDeContaNaoPermitidaException;
 import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 import br.com.banco.desgraca.exception.SaqueNaoPermitidoException;
 import br.com.banco.desgraca.exception.ValorInvalidoException;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.HashMap;
+import java.util.ArrayList;
+
 
 public abstract class ContaGenerica implements ContaBancaria {
-    private double saldo;
     private int numeroConta;
     private InstituicaoBancaria instituicaoBancaria;
     private TipoContaBancaria tipoContaBancaria;
     private RegrasContas regrasContas;
 
-    public ContaGenerica(double saldo, int numeroConta, InstituicaoBancaria instituicaoBancaria, TipoContaBancaria tipoContaBancaria) {
-        this.saldo = saldo;
+    private ArrayList<Transacao> transacoes = new ArrayList<>();
+
+    public ContaGenerica(int numeroConta, InstituicaoBancaria instituicaoBancaria, TipoContaBancaria tipoContaBancaria) {
+        if( !instituicaoBancaria.isPermitido(tipoContaBancaria) ) {
+            throw new CriacaoDeContaNaoPermitidaException("Banco "+instituicaoBancaria.getDescricao() + " não aceita abertura de contas do tipo "+tipoContaBancaria);
+        }
         this.numeroConta = numeroConta;
         this.instituicaoBancaria = instituicaoBancaria;
         this.tipoContaBancaria = tipoContaBancaria;
@@ -47,32 +58,46 @@ public abstract class ContaGenerica implements ContaBancaria {
 
     @Override
     public Double consultarSaldo() {
+        double saldo = 0.0;
+        for (Transacao transacao : transacoes) {
+            saldo+=transacao.getValor();
+        }
         return saldo;
     }
 
     @Override
     public void depositar(Double valor) {
         validaValorRecebido(valor);
-        saldo +=valor;
+        LocalDate data = Data.getDataTransacao();
+        Transacao transacao = new Transacao(data, TipoTransacao.DEPOSITO, valor);
+        transacoes.add(transacao);
+        System.out.println(data + " - Depositando R$"+ DecimalFormat.getCurrencyInstance().format(valor) + " na " + toString() + ".");
     }
 
     @Override
     public void sacar(Double valor) {
         validaValorRecebido(valor);
+        double saldo = consultarSaldo();
 
-        if( valor < regrasContas.saqueMinimo) {
-            throw new SaqueNaoPermitidoException("O valor mínimo para saques é de: " + DecimalFormat.getCurrencyInstance().format(regrasContas.saqueMinimo));
+        if( valor < regrasContas.getSaqueMinimo()) {
+            throw new SaqueNaoPermitidoException("O valor mínimo para saques é de: " + DecimalFormat.getCurrencyInstance().format(regrasContas.getSaqueMinimo()));
         }
 
-        if( regrasContas.saqueMultiploDoValor > 0 && valor % regrasContas.saqueMultiploDoValor!=0) {
-            throw new SaqueNaoPermitidoException("O valor precisa ser múltiplo de: " + DecimalFormat.getCurrencyInstance().format(regrasContas.saqueMultiploDoValor));
+        if( regrasContas.getSaqueMultiploDoValor() > 0 && valor % regrasContas.getSaqueMultiploDoValor() != 0) {
+            throw new SaqueNaoPermitidoException("O valor precisa ser múltiplo de: " + DecimalFormat.getCurrencyInstance().format(regrasContas.getSaqueMultiploDoValor()));
         }
 
-        if( saldo - ( valor * ( 1 + regrasContas.taxaSaque) ) < 0) {
+        if( saldo - ( valor * ( 1 + regrasContas.getTaxaSaque()) ) < 0) {
             throw new SaldoInsuficienteException("Não há saldo suficiente na conta.");
         } else {
-            saldo -= valor;
-            saldo -= valor * (1 + regrasContas.taxaSaque);
+            LocalDate data = Data.getDataTransacao();
+            Transacao transacaoSaque = new Transacao(data,TipoTransacao.SAQUE,-valor);
+            transacoes.add(transacaoSaque);
+            System.out.println(data + " - Sacando "+ DecimalFormat.getCurrencyInstance().format(valor) + " na " + toString() + ".");
+
+            if(regrasContas.getTaxaSaque() > 0) {
+                cobraTaxa(regrasContas.getTaxaSaque(), valor, data);
+            }
         }
 
     }
@@ -80,28 +105,51 @@ public abstract class ContaGenerica implements ContaBancaria {
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
         validaValorRecebido(valor);
+        double saldo = consultarSaldo();
 
         boolean mesmaInstituicaoBancaria = (instituicaoBancaria == contaDestino.getInstituicaoBancaria());
-        double taxaTransferencia = mesmaInstituicaoBancaria ? regrasContas.taxaTransferenciaMesmaInstituicao : regrasContas.taxaTransferenciaOutraInstituicao;
+        double taxaTransferencia = mesmaInstituicaoBancaria ? regrasContas.getTaxaTransferenciaMesmaInstituicao() : regrasContas.getTaxaTransferenciaOutraInstituicao();
 
         if( saldo - ( valor * ( 1 + taxaTransferencia) ) < 0) {
             throw new SaldoInsuficienteException("Não há saldo suficiente na conta.");
         }
+        LocalDate data = Data.getDataTransacao();
 
-        saldo -=valor;
-        saldo -=valor*(1 + taxaTransferencia);
+        Transacao transacaoTransferencia = new Transacao(data, TipoTransacao.TRANSFERENCIA, -valor);
+        transacoes.add(transacaoTransferencia);
+        System.out.println(data + " - Transferindo "+ DecimalFormat.getCurrencyInstance().format(valor) + " na " + toString() + ", para " + contaDestino.toString() );
+        contaDestino.depositar(valor);
 
+        if(taxaTransferencia>0) {
+            cobraTaxa(taxaTransferencia, valor, data);
+        }
     }
 
     @Override
     public void exibirExtrato(LocalDate inicio, LocalDate fim) {
-
+        System.out.println("\n----- EXTRATO " + toString());
+        for (Transacao transacao : transacoes) {
+            if(     transacao.getDate().isEqual(inicio) ||
+                    transacao.getDate().isEqual(fim) ||
+                    (transacao.getDate().isAfter(inicio) && transacao.getDate().isBefore(fim))
+            ) {
+                System.out.println(transacao);
+            }
+        }
+        System.out.println("\nSALDO: " + DecimalFormat.getCurrencyInstance().format(consultarSaldo()));
+        System.out.println("-----");
     }
 
     private void validaValorRecebido(Double valor) {
         if( valor < 0 || valor.isNaN()) {
-            throw new ValorInvalidoException("Valor solicitado inválido. (" + valor +")" );
+            throw new ValorInvalidoException("Valor inválido. (" + valor +")" );
         }
+    }
 
+    private void cobraTaxa(Double taxa, Double valor, LocalDate data) {
+        BigDecimal bd = new BigDecimal(valor * taxa).setScale(2, RoundingMode.DOWN);
+        Transacao transacaoTaxa = new Transacao(data, TipoTransacao.TAXA, -bd.doubleValue());
+        transacoes.add(transacaoTaxa);
+        System.out.println(data + " - Taxa bancária: "+ DecimalFormat.getCurrencyInstance().format(bd.doubleValue()) + " na " + toString() + ".");
     }
 }

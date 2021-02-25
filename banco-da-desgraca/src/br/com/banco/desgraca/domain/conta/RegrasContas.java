@@ -1,11 +1,11 @@
 package br.com.banco.desgraca.domain.conta;
 
 public class RegrasContas {
-    double taxaSaque;
-    double taxaTransferenciaMesmaInstituicao;
-    double taxaTransferenciaOutraInstituicao;
-    double saqueMinimo;
-    double saqueMultiploDoValor;
+    private double taxaSaque;
+    private double taxaTransferenciaMesmaInstituicao;
+    private double taxaTransferenciaOutraInstituicao;
+    private double saqueMinimo;
+    private double saqueMultiploDoValor;
 
     public RegrasContas(double taxaSaque,
                         double taxaTransferenciaMesmaInstituicao,
