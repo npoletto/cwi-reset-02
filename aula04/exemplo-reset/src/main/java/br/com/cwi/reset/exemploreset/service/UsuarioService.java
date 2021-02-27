@@ -1,10 +1,8 @@
 package br.com.cwi.reset.exemploreset.service;
 
 import br.com.cwi.reset.exemploreset.dao.UsuarioDAO;
-import br.com.cwi.reset.exemploreset.domain.Mensagem;
 import br.com.cwi.reset.exemploreset.domain.Usuario;
 import br.com.cwi.reset.exemploreset.exception.BadRequestException;
-import br.com.cwi.reset.exemploreset.repository.MensagemRepository;
 import br.com.cwi.reset.exemploreset.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

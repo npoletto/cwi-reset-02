@@ -1,13 +1,11 @@
 package br.com.cwi.reset.exemploreset.repository;
 
-import br.com.cwi.reset.exemploreset.domain.Mensagem;
 import br.com.cwi.reset.exemploreset.domain.Usuario;
 import br.com.cwi.reset.exemploreset.exception.BadRequestException;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 @Repository
 public class UsuarioRepository {
@@ -15,8 +13,7 @@ public class UsuarioRepository {
     static HashMap<Integer, Usuario> usuarios = new HashMap();
 
     public ArrayList<Usuario> getUsuarios() {
-        ArrayList<Usuario> lista = new ArrayList<>();
-        lista.addAll(usuarios.values());
+        ArrayList<Usuario> lista = new ArrayList<>(usuarios.values());
         return lista;
     }
 
