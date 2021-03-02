@@ -1,20 +1,23 @@
 package br.com.cwi.resetflix.entity;
 
-import br.com.cwi.resetflix.domain.Genero;
-
 import java.util.List;
 
-public class ObraEntity {
+import br.com.cwi.resetflix.domain.Genero;
+
+public class FilmeEntity {
 
     private Long id;
     private String nome;
     private Genero genero;
+    private Long idDiretor;
     private List<Long> idsAtores;
 
-    public ObraEntity(final Long id, final String nome, final Genero genero, final List<Long> idsAtores) {
+    public FilmeEntity(final Long id, final String nome, final Genero genero, final Long idDiretor,
+        final List<Long> idsAtores) {
         this.id = id;
         this.nome = nome;
         this.genero = genero;
+        this.idDiretor = idDiretor;
         this.idsAtores = idsAtores;
     }
 
@@ -42,6 +45,14 @@ public class ObraEntity {
         this.genero = genero;
     }
 
+    public Long getIdDiretor() {
+        return idDiretor;
+    }
+
+    public void setIdDiretor(final Long idDiretor) {
+        this.idDiretor = idDiretor;
+    }
+
     public List<Long> getIdsAtores() {
         return idsAtores;
     }
@@ -49,5 +60,4 @@ public class ObraEntity {
     public void setIdsAtores(final List<Long> idsAtores) {
         this.idsAtores = idsAtores;
     }
-
 }

@@ -2,19 +2,18 @@ package br.com.cwi.resetflix.entity;
 
 import java.util.List;
 
-public class ProfissionalEntity {
+public class AtorEntity {
 
     private Long id;
     private String nome;
     private List<Long> idsFilmes;
 
-    public ProfissionalEntity(Long id, String nome, List<Long> idsFilmes) {
-        this.id = id;
+    public AtorEntity(final String nome, final List<Long> idsFilmes) {
         this.nome = nome;
         this.idsFilmes = idsFilmes;
     }
-
-    public ProfissionalEntity(String nome, List<Long> idsFilmes) {
+    public AtorEntity(final Long id, final String nome, final List<Long> idsFilmes) {
+        this.id = id;
         this.nome = nome;
         this.idsFilmes = idsFilmes;
     }
@@ -23,7 +22,7 @@ public class ProfissionalEntity {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -31,7 +30,7 @@ public class ProfissionalEntity {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public void setNome(final String nome) {
         this.nome = nome;
     }
 
@@ -39,7 +38,7 @@ public class ProfissionalEntity {
         return idsFilmes;
     }
 
-    public void setIdsFilmes(List<Long> idsFilmes) {
+    public void setIdsFilmes(final List<Long> idsFilmes) {
         this.idsFilmes = idsFilmes;
     }
 }
