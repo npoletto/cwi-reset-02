@@ -1,19 +1,19 @@
 package br.com.cwi.resetflix.testesAleatorios;
 
 public abstract class Entidade {
-    private Long id;
+    private long id;
     private String nome;
 
-    public Entidade(Long id, String nome) {
+    public Entidade(long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    protected void setId(long id) {
         this.id = id;
     }
 
@@ -21,7 +21,17 @@ public abstract class Entidade {
         return nome;
     }
 
-    public void setNome(String nome) {
+    protected void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

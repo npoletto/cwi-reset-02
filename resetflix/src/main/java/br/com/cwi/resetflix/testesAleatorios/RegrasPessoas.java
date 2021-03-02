@@ -1,9 +1,6 @@
 package br.com.cwi.resetflix.testesAleatorios;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class RegrasPessoas {
     static HashMap<Long, Pessoa> pessoas = new HashMap<>();
@@ -23,8 +20,8 @@ public class RegrasPessoas {
         pessoas.get(pessoa.getId()).addProfissao(new Ator());
     }
 
-    public ArrayList<Pessoa> getProfissionais(TipoProfissao tipoProfissao) {
-        ArrayList<Pessoa> lista = new ArrayList<>();
+    public List<Pessoa> getProfissionais(TipoProfissao tipoProfissao) {
+        List<Pessoa> lista = new ArrayList<>();
         for(long key : pessoas.keySet()) {
             Pessoa pessoa = pessoas.get(key);
                 for(Profissao profissao : pessoa.getProfissoes()) {
