@@ -16,13 +16,12 @@ public class DiretoresRepository {
     static Map<Long, DiretorEntity> diretores = new HashMap();
 
     public List<DiretorEntity> getDiretores(){
-        List<DiretorEntity> lista = new ArrayList<>(diretores.values());
-        return lista;
+        return new ArrayList<>(diretores.values());
     }
 
     public Long criarDiretor(final DiretorEntity diretorSalvar) {
         if(diretorSalvar.getId() == null){
-            diretorSalvar.setId(ContadorIdsEntidades.getNextId());
+            diretorSalvar.setId(ContadorIdsEntidades.getNextIdPessoa());
         }
         diretores.put(diretorSalvar.getId(), diretorSalvar);
         return diretorSalvar.getId();

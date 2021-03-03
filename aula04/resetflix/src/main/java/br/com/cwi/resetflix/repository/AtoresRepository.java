@@ -17,13 +17,12 @@ public class AtoresRepository {
     static Map<Long, AtorEntity> atores = new HashMap();
 
     public List<AtorEntity> getAtores(){
-        List<AtorEntity> lista = new ArrayList<>(atores.values());
-        return lista;
+        return new ArrayList<>(atores.values());
     }
 
     public Long criarAtor(final AtorEntity atorSalvar) {
         if(atorSalvar.getId() == null){
-            atorSalvar.setId(ContadorIdsEntidades.getNextId());
+            atorSalvar.setId(ContadorIdsEntidades.getNextIdPessoa());
         }
         atores.put(atorSalvar.getId(), atorSalvar);
         return atorSalvar.getId();

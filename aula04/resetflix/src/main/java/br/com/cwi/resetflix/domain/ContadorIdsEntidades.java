@@ -2,9 +2,14 @@ package br.com.cwi.resetflix.domain;
 
 public final class ContadorIdsEntidades {
 
-    private static Long id = 1L;
+    private static Long idPessoa = 1L;
+    private static Long idObra = 1L;
 
-    public static Long getNextId() {
-        return id++;
+    public static Long getNextIdPessoa() {
+        return idPessoa++;
+    }
+
+    public static Long getNextIdObra() {
+        return idObra++;
     }
 }
