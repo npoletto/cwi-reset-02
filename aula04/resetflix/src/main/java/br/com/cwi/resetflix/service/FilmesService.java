@@ -4,10 +4,14 @@ import br.com.cwi.resetflix.domain.Genero;
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
-import br.com.cwi.resetflix.mapper.*;
+import br.com.cwi.resetflix.exception.BadRequestException;
+import br.com.cwi.resetflix.mapper.entity.FilmeEntityMapper;
+import br.com.cwi.resetflix.mapper.details.ConsultarDetalhesFilmeResponseMapper;
+import br.com.cwi.resetflix.mapper.response.FilmeResponseMapper;
 import br.com.cwi.resetflix.repository.AtoresRepository;
 import br.com.cwi.resetflix.repository.DiretoresRepository;
 import br.com.cwi.resetflix.repository.FilmesRepository;
+import br.com.cwi.resetflix.request.CriarFilmeRequest;
 import br.com.cwi.resetflix.response.ConsultarDetalhesFilmeResponse;
 import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,7 @@ public class FilmesService {
 
     static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper();
     static ConsultarDetalhesFilmeResponseMapper MAPPER_DETALHES_FILME = new ConsultarDetalhesFilmeResponseMapper();
+    static FilmeEntityMapper MAPPER_ENTITY = new FilmeEntityMapper();
 
     public List<FilmeResponse> getFilmes(Genero genero) {
         if(genero==null) {
@@ -48,5 +53,21 @@ public class FilmesService {
             atores.add(atoresRepository.acharAtorPorId(idAtor));
         }
         return MAPPER_DETALHES_FILME.mapear(filmeSalvo, diretorSalvo, atores );
+    }
+
+    public Long criarFilme(CriarFilmeRequest request) {
+        if(request.getNome()==null || request.getNome().isEmpty()) {
+            throw new BadRequestException("O filme precisa de um nome.");
+        }
+        FilmeEntity filmeSalvar = MAPPER_ENTITY.mapear(request);
+        return filmesRepository.criarFilme(filmeSalvar);
+    }
+
+    public void assistir(Long id) {
+        filmesRepository.marcarComoAssistido(id);
+    }
+
+    public List<FilmeResponse> recomendacoes() {
+        return MAPPER_RESPONSE.mapear(filmesRepository.getRecomendacoes());
     }
 }

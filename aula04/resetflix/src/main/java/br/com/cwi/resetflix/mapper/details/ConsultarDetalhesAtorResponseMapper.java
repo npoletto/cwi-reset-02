@@ -1,9 +1,10 @@
-package br.com.cwi.resetflix.mapper;
+package br.com.cwi.resetflix.mapper.details;
 
 import java.util.List;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
+import br.com.cwi.resetflix.mapper.response.FilmeResponseMapper;
 import br.com.cwi.resetflix.response.ConsultarDetalhesAtorResponse;
 import br.com.cwi.resetflix.response.FilmeResponse;
 

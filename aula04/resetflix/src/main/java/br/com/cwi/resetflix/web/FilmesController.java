@@ -40,20 +40,18 @@ public class FilmesController implements FilmesContract {
     @Override
     @PostMapping
     public Long criarFilme(@RequestBody final CriarFilmeRequest request) {
-        //TODO: implementar
-        return 0L;
+        return filmesService.criarFilme(request);
     }
 
     @Override
     @GetMapping("/recomendacoes")
     public List<FilmeResponse> getRecomendacoesFilmes() {
-        //TODO realizar chamada
-        return Collections.emptyList();
+        return filmesService.recomendacoes();
     }
 
     @Override
     @PostMapping("/{id}/assistir")
     public void assistirFilme(@PathVariable("id") final Long id) {
-        //TODO realizar chamada
+        filmesService.assistir(id);
     }
 }

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
-import br.com.cwi.resetflix.mapper.AtorEntityMapper;
-import br.com.cwi.resetflix.mapper.AtoresResponseMapper;
-import br.com.cwi.resetflix.mapper.ConsultarDetalhesAtorResponseMapper;
+import br.com.cwi.resetflix.mapper.entity.AtorEntityMapper;
+import br.com.cwi.resetflix.mapper.response.AtoresResponseMapper;
+import br.com.cwi.resetflix.mapper.details.ConsultarDetalhesAtorResponseMapper;
 import br.com.cwi.resetflix.repository.AtoresRepository;
 import br.com.cwi.resetflix.repository.FilmesRepository;
 import br.com.cwi.resetflix.request.CriarAtorRequest;

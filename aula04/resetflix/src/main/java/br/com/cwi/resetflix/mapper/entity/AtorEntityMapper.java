@@ -1,4 +1,4 @@
-package br.com.cwi.resetflix.mapper;
+package br.com.cwi.resetflix.mapper.entity;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.request.CriarAtorRequest;

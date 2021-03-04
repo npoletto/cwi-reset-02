@@ -1,4 +1,4 @@
-package br.com.cwi.resetflix.mapper;
+package br.com.cwi.resetflix.mapper.response;
 
 
 import br.com.cwi.resetflix.entity.DiretorEntity;

@@ -1,22 +1,32 @@
-package br.com.cwi.resetflix.response;
-
-import java.util.List;
+package br.com.cwi.resetflix.entity;
 
 import br.com.cwi.resetflix.domain.Genero;
 
-public class ConsultarDetalhesSerieResponse {
+import java.util.List;
+import java.util.Map;
+
+public class SerieEntity {
+
     private Long id;
     private String nome;
     private Genero genero;
-    private List<AtoresResponse> atores;
+    private List<Long> idsAtores;
     private Integer temporadas;
     private Integer episodios;
 
-    public ConsultarDetalhesSerieResponse(Long id, String nome, Genero genero, List<AtoresResponse> atores, Integer temporadas, Integer episodios) {
+    public SerieEntity(Long id, String nome, Genero genero, List<Long> idsAtores, Integer temporadas, Integer episodios) {
         this.id = id;
         this.nome = nome;
         this.genero = genero;
-        this.atores = atores;
+        this.idsAtores = idsAtores;
+        this.temporadas = temporadas;
+        this.episodios = episodios;
+    }
+
+    public SerieEntity(String nome, Genero genero, List<Long> idsAtores, Integer temporadas, Integer episodios) {
+        this.nome = nome;
+        this.genero = genero;
+        this.idsAtores = idsAtores;
         this.temporadas = temporadas;
         this.episodios = episodios;
     }
@@ -45,12 +55,12 @@ public class ConsultarDetalhesSerieResponse {
         this.genero = genero;
     }
 
-    public List<AtoresResponse> getAtores() {
-        return atores;
+    public List<Long> getIdsAtores() {
+        return idsAtores;
     }
 
-    public void setAtores(List<AtoresResponse> atores) {
-        this.atores = atores;
+    public void setIdsAtores(List<Long> idsAtores) {
+        this.idsAtores = idsAtores;
     }
 
     public Integer getTemporadas() {

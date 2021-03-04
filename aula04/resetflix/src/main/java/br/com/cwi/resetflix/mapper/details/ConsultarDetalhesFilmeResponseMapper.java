@@ -1,14 +1,13 @@
-package br.com.cwi.resetflix.mapper;
+package br.com.cwi.resetflix.mapper.details;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
+import br.com.cwi.resetflix.mapper.response.AtoresResponseMapper;
 import br.com.cwi.resetflix.response.AtoresResponse;
 import br.com.cwi.resetflix.response.ConsultarDetalhesFilmeResponse;
 import br.com.cwi.resetflix.response.DiretoresResponse;
-import br.com.cwi.resetflix.response.FilmeResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultarDetalhesFilmeResponseMapper {

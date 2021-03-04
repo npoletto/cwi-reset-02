@@ -1,4 +1,4 @@
-package br.com.cwi.resetflix.mapper;
+package br.com.cwi.resetflix.mapper.response;
 
 import java.util.ArrayList;
 import java.util.List;
