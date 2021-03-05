@@ -44,9 +44,10 @@ public class SeriesController implements SeriesContract {
 
     @Override
     @PostMapping("/{id}/{temporada}/{episodio}/assistir")
-    public void assistirSerie(@ApiParam("id") final Long id,
-                              @ApiParam("temporada") final Integer temporada,
-                              @ApiParam("episodio") final Integer episodio) {
+    public void assistirSerie(@PathVariable("id") final Long id,
+                              @PathVariable("temporada") final Integer temporada,
+                              @PathVariable("episodio") final Integer episodio) {
+        System.out.println("ID da série recebido: " + id);
         seriesService.assistir(id, temporada, episodio);
     }
 }
