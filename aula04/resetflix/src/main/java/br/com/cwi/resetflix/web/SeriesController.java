@@ -39,15 +39,14 @@ public class SeriesController implements SeriesContract {
 
     @GetMapping("/recomendacoes")
     public List<SerieResponse> getRecomendacoesSeries() {
-        //TODO realizar chamada
-        return Collections.emptyList();
+        return seriesService.recomendacoes();
     }
 
     @Override
-    @PostMapping("/{id}/assistir")
+    @PostMapping("/{id}/{temporada}/{episodio}/assistir")
     public void assistirSerie(@ApiParam("id") final Long id,
                               @ApiParam("temporada") final Integer temporada,
                               @ApiParam("episodio") final Integer episodio) {
-        //TODO realizar chamada
+        seriesService.assistir(id, temporada, episodio);
     }
 }

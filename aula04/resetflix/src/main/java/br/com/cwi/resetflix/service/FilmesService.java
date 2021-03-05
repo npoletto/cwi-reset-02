@@ -5,6 +5,7 @@ import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.DiretorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
 import br.com.cwi.resetflix.exception.BadRequestException;
+import br.com.cwi.resetflix.exception.UsuarioDesocupadoException;
 import br.com.cwi.resetflix.mapper.entity.FilmeEntityMapper;
 import br.com.cwi.resetflix.mapper.details.ConsultarDetalhesFilmeResponseMapper;
 import br.com.cwi.resetflix.mapper.response.FilmeResponseMapper;
@@ -68,6 +69,10 @@ public class FilmesService {
     }
 
     public List<FilmeResponse> recomendacoes() {
-        return MAPPER_RESPONSE.mapear(filmesRepository.getRecomendacoes());
+        List<FilmeResponse> recomendacoes = MAPPER_RESPONSE.mapear(filmesRepository.getRecomendacoes());
+        if(recomendacoes.isEmpty()) {
+            throw new UsuarioDesocupadoException("Você já assistiu tudo do seu estilo predileto.");
+        }
+        return recomendacoes;
     }
 }

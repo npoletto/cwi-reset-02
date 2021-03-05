@@ -17,7 +17,6 @@ public enum Genero {
     SUSPENSE("Suspense"),
     TERROR("Terror"),
     THRILLER("Thriller "),
-    PORNO("Porno"),
     RUIM("Ruim");
 
     private String descricao;

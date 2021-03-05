@@ -29,9 +29,8 @@ public class BancoDeDadosResetFlix {
     private static Set<Long> idsSeriesAssistidas = new HashSet<>();
 
 
-    public Long insertAtor(AtorEntity atorSalvar) {
+    public synchronized Long insertAtor(AtorEntity atorSalvar) {
         if (atorSalvar.getId() == null) atorSalvar.setId(idAtor++);
-        atores.put(atorSalvar.getId(), atorSalvar);
         if (!atorSalvar.getIdsFilmes().isEmpty()) {
             for(Long idFilme : atorSalvar.getIdsFilmes() ) {
                 if(filmes.getOrDefault(idFilme, null) == null) {
@@ -43,12 +42,13 @@ public class BancoDeDadosResetFlix {
             }
             chavesAtorFilme.put(atorSalvar.getId(), atorSalvar.getIdsFilmes());
         }
+        atores.put(atorSalvar.getId(), atorSalvar);
         return atorSalvar.getId();
     }
 
-    public Long insertDiretor(DiretorEntity diretorSalvar) {
+    public synchronized Long insertDiretor(DiretorEntity diretorSalvar) {
         if (diretorSalvar.getId() == null) diretorSalvar.setId(idDiretor++);
-        diretores.put(diretorSalvar.getId(), diretorSalvar);
+
         if (!diretorSalvar.getIdsFilmes().isEmpty()) {
             for (Long idFilme : diretorSalvar.getIdsFilmes()) {
                 FilmeEntity filme = filmes.getOrDefault(idFilme, null);
@@ -59,12 +59,12 @@ public class BancoDeDadosResetFlix {
             }
             chavesDiretorFilme.put(diretorSalvar.getId(), diretorSalvar.getIdsFilmes());
         }
+        diretores.put(diretorSalvar.getId(), diretorSalvar);
         return diretorSalvar.getId();
     }
 
-    public Long insertFilme(FilmeEntity filmeSalvar) {
+    public synchronized Long insertFilme(FilmeEntity filmeSalvar) {
             if(filmeSalvar.getId()==null) filmeSalvar.setId(idFilme++);
-            filmes.put(filmeSalvar.getId(),filmeSalvar);
             if(!filmeSalvar.getIdsAtores().isEmpty()) {
                 for(Long idAtor : filmeSalvar.getIdsAtores()) {
                     if(atores.getOrDefault(idAtor, null) == null) {
@@ -76,12 +76,12 @@ public class BancoDeDadosResetFlix {
                 }
                 chavesFilmeAtor.put(filmeSalvar.getId(),filmeSalvar.getIdsAtores());
             }
+            filmes.put(filmeSalvar.getId(),filmeSalvar);
             return filmeSalvar.getId();
     }
 
-    public Long insertSerie(SerieEntity serieSalvar) {
+    public synchronized Long insertSerie(SerieEntity serieSalvar) {
         if(serieSalvar.getId()==null) serieSalvar.setId(idSerie++);
-        series.put(serieSalvar.getId(),serieSalvar);
         if(!serieSalvar.getIdsAtores().isEmpty()) {
             for(Long idAtor : serieSalvar.getIdsAtores()) {
                 if(atores.getOrDefault(idAtor, null) == null) {
@@ -90,6 +90,7 @@ public class BancoDeDadosResetFlix {
             }
             chavesSerieAtor.put(serieSalvar.getId(),serieSalvar.getIdsAtores());
         }
+        series.put(serieSalvar.getId(),serieSalvar);
         return serieSalvar.getId();
     }
 

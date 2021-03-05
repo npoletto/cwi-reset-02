@@ -4,6 +4,7 @@ import br.com.cwi.resetflix.domain.Genero;
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.SerieEntity;
 import br.com.cwi.resetflix.exception.BadRequestException;
+import br.com.cwi.resetflix.exception.UsuarioDesocupadoException;
 import br.com.cwi.resetflix.mapper.details.ConsultarDetalhesSerieResponseMapper;
 import br.com.cwi.resetflix.mapper.entity.SerieEntityMapper;
 import br.com.cwi.resetflix.mapper.response.SerieResponseMapper;
@@ -55,5 +56,17 @@ public class SeriesService {
         }
         SerieEntity serieSalvar = MAPPER_ENTITY.mapear(request);
         return seriesRepository.criarSerie(serieSalvar);
+    }
+
+    public void assistir(Long id, Integer temporada, Integer episodio) {
+        seriesRepository.marcadoComoAssistido(id, temporada, episodio);
+    }
+
+    public List<SerieResponse> recomendacoes() {
+        List<SerieResponse> recomendacoes = MAPPER_RESPONSE.mapear(seriesRepository.recomendacoes());
+        if(recomendacoes.isEmpty()) {
+            throw new UsuarioDesocupadoException("Você já assistiu tudo do seu estilo predileto.");
+        }
+        return recomendacoes;
     }
 }
