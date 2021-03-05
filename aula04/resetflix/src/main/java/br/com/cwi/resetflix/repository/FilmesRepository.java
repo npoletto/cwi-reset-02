@@ -8,6 +8,7 @@ import br.com.cwi.resetflix.domain.BancoDeDadosResetFlix;
 import br.com.cwi.resetflix.domain.ContadorIdsEntidades;
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.exception.NotFoundException;
+import br.com.cwi.resetflix.exception.UsuarioDesocupadoException;
 import org.springframework.stereotype.Repository;
 
 import br.com.cwi.resetflix.domain.Genero;
@@ -93,6 +94,9 @@ public class FilmesRepository {
                 maior = genero.getValue();
                 generoMaior = genero.getKey();
             }
+        }
+        if(generoMaior==null) {
+            throw new UsuarioDesocupadoException("Nada para indicar! Usuário nunca assistiu nada.");
         }
         return getFilmesNaoAssistidos(generoMaior);
     }
