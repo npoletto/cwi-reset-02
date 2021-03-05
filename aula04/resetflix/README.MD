@@ -1,4 +1,19 @@
-# RESETFLIX!!!!
+# ATENÇÃO AVALIADORES!!! LEIAM AQUI !!
+
+Tive alguns dilemas para resolver neste projeto, vou descrever as formas com que procedi:
+
+1. Perdi algum tempo tentando escolher a melhor maneira de não repetir código porque as as classes Filmes e Series, assim como Diretor e Ator, eram muito semelhantes.
+Fiquei num impasse se devia usar herança ou não, por isso perguntei aos intrutores como proceder, sabendo que neste momento isso não era importante, resolvi repetir os códigos e fazer uma implementação individual para cada coisa. Isso me incomodou de certa forma, pois aparentemente não deve ser a maneira mais elegante de desenvolver este desafio. Mas eu precisava ir em frente, quem sabe refatore mais para frente... Então sim, tem bastante código repetido. :(
+
+2. Ao criar Atores era preciso passar os IDs dos filmes que eles atuaram, e para criar Filmes era preciso passar os IDs do elenco. Porém ao criar um sem existir o outro, fica um tanto incoerente (passar um ID de algo que ainda não existe). Este problema foi o que mais me tomou tempo para resolver, e consegui implementando uma classe que representaria um banco de dados (BancoDeDadosResetFlix). Nela há referências de ids de uma classe para outra (ex: Filme->Ator e Ator->Filme), logo, eu não permito no aplicativo criar tanto um quanto o outro, se passar algum ID que não exista (retornará erro 400). E caso sejam passados IDs válidos, ele não só cria a entidade desejada, como atualiza as demais envolvidas. Por exemplo, se tenho já alguns atores cadastrados, sem nenhuma indicaçào de filme que participaram, ao criar um novo Filme que passe o ID destes atores, o filme será criado, e cada ator será atualizado com o ID deste novo filme. Ou seja, fiz uma referência cruzada entre ambos através de Hashmaps. 
+
+3. Realizei os testes através do Postman, que ferramenta maravilhosa! :)
+
+Obrigado!
+
+____________________________________________________________________________________________________________
+
+# ENUNCIADO ORIGINAL RESETFLIX:
 
 O seu objetivo neste projeto é implementar o sistema do RESETFLIX, que definitivamente não é relacionado ao Netflix de maneira alguma.
 
